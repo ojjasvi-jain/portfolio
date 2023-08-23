@@ -1,5 +1,6 @@
 import React from "react";
 import emailjs from "@emailjs/browser";
+import swal from "sweetalert";
 
 const Contact = () => {
   const form = React.useRef();
@@ -7,21 +8,39 @@ const Contact = () => {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs
-      .sendForm(
-        "service_tav1lkj",
-        "template_tjpckkp",
-        form.current,
-        "BWupZll2bC57YZzXk"
-      )
-      .then(
-        (result) => {
-          e.target.reset();
-        },
-        (error) => {
-          console.log(error.text);
-        }
+    if (e.target[0].value === "")
+      swal(
+        "name!",
+        "Thanks for reaching out to me , Your Name section is left",
+        "info"
       );
+    else if (e.target[1].value === "")
+      swal(
+        "Email!",
+        " please enter your mail , I will reachout to you",
+        "info"
+      );
+    else if (e.target[2].value === "")
+      swal("message!", "message section is left", "info");
+    else {
+      emailjs
+        .sendForm(
+          "service_tav1lkj",
+          "template_tjpckkp",
+          form.current,
+          "BWupZll2bC57YZzXk"
+        )
+        .then(
+          (result) => {
+            e.target.reset();
+            swal("Sent!", "Thanks for reaching out to me", "success");
+          },
+          (error) => {
+            console.log(error.text);
+            swal("Not Sent!!", "Please try again", "error");
+          }
+        );
+    }
   };
 
   return (
