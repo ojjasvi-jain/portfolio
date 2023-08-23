@@ -12,12 +12,6 @@ const Projects = () => {
   const projects = [
     {
       id: 3,
-      src: fullSite,
-      codeUrl: "https://github.com/ojjasvi-jain",
-      demoUrl: "https://cajhansisiddharth.web.app/",
-    },
-    {
-      id: 3,
       src: restaurant,
       demoUrl: "https://ojjasvi-jain.github.io/netflix.com/index.html",
       codeUrl: "https://github.com/ojjasvi-jain/netflix.com",
